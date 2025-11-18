@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import "tailwindcss";
 
 @theme {
-    --font-logo: 'Mochiy Pop One', sans-serif;
+    --font-logo: 'Mochiy Pop P One', sans-serif;
     --font-text: 'Poppins', sans-serif;
     
     --color-a-esverdeado: #126668;
@@ -10,4 +10,92 @@
     --color-a-escuro: #295E98;
     --color-a-agua: #41ACF5;
     --color-a-claro: #8FCFFF;
+}
+
+.text-stroke5 {
+    -webkit-text-stroke: 5px black;
+}
+.text-stroke4 {
+    -webkit-text-stroke: 4px black;
+}
+.text-stroke3 {
+    -webkit-text-stroke: 3px black;
+}
+.text-stroke2 {
+    -webkit-text-stroke: 2px black;
+}
+.text-stroke1 {
+    -webkit-text-stroke: 1px black;
+}
+
+/* Contorno suave multi-plataforma (melhor que text-stroke) */
+/* Espessura ~2px */
+.text-outline-2 {
+    text-shadow:
+        1px 0 0 #000,
+        -1px 0 0 #000,
+        0 1px 0 #000,
+        0 -1px 0 #000,
+        1px 1px 0 #000,
+        -1px 1px 0 #000,
+        1px -1px 0 #000,
+        -1px -1px 0 #000,
+        2px 0 0 #000,
+        -2px 0 0 #000,
+        0 2px 0 #000,
+        0 -2px 0 #000,
+        2px 1px 0 #000,
+        -2px 1px 0 #000,
+        2px -1px 0 #000,
+        -2px -1px 0 #000,
+        1px 2px 0 #000,
+        -1px 2px 0 #000,
+        1px -2px 0 #000,
+        -1px -2px 0 #000,
+        2px 2px 0 #000,
+        -2px 2px 0 #000,
+        2px -2px 0 #000,
+        -2px -2px 0 #000;
+}
+
+/* Espessura ~3px */
+.text-outline-3 {
+    text-shadow:
+        1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000,
+        1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000,
+        2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000,
+        2px 1px 0 #000, -2px 1px 0 #000, 2px -1px 0 #000, -2px -1px 0 #000,
+        1px 2px 0 #000, -1px 2px 0 #000, 1px -2px 0 #000, -1px -2px 0 #000,
+        2px 2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000, -2px -2px 0 #000,
+        3px 0 0 #000, -3px 0 0 #000, 0 3px 0 #000, 0 -3px 0 #000,
+        3px 1px 0 #000, -3px 1px 0 #000, 3px -1px 0 #000, -3px -1px 0 #000,
+        1px 3px 0 #000, -1px 3px 0 #000, 1px -3px 0 #000, -1px -3px 0 #000,
+        3px 2px 0 #000, -3px 2px 0 #000, 3px -2px 0 #000, -3px -2px 0 #000,
+        2px 3px 0 #000, -2px 3px 0 #000, 2px -3px 0 #000, -2px -3px 0 #000,
+        3px 3px 0 #000, -3px 3px 0 #000, 3px -3px 0 #000, -3px -3px 0 #000;
+}
+
+/* Espessura ~4px (estilo "cartoon") */
+.text-outline-4 {
+    text-shadow:
+        1px 0 0 #000, -1px 0 0 #000, 0 1px 0 #000, 0 -1px 0 #000,
+        1px 1px 0 #000, -1px 1px 0 #000, 1px -1px 0 #000, -1px -1px 0 #000,
+        2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000,
+        2px 1px 0 #000, -2px 1px 0 #000, 2px -1px 0 #000, -2px -1px 0 #000,
+        1px 2px 0 #000, -1px 2px 0 #000, 1px -2px 0 #000, -1px -2px 0 #000,
+        2px 2px 0 #000, -2px 2px 0 #000, 2px -2px 0 #000, -2px -2px 0 #000,
+        3px 0 0 #000, -3px 0 0 #000, 0 3px 0 #000, 0 -3px 0 #000,
+        3px 1px 0 #000, -3px 1px 0 #000, 3px -1px 0 #000, -3px -1px 0 #000,
+        1px 3px 0 #000, -1px 3px 0 #000, 1px -3px 0 #000, -1px -3px 0 #000,
+        3px 2px 0 #000, -3px 2px 0 #000, 3px -2px 0 #000, -3px -2px 0 #000,
+        2px 3px 0 #000, -2px 3px 0 #000, 2px -3px 0 #000, -2px -3px 0 #000,
+        3px 3px 0 #000, -3px 3px 0 #000, 3px -3px 0 #000, -3px -3px 0 #000,
+        4px 0 0 #000, -4px 0 0 #000, 0 4px 0 #000, 0 -4px 0 #000,
+        4px 1px 0 #000, -4px 1px 0 #000, 4px -1px 0 #000, -4px -1px 0 #000,
+        1px 4px 0 #000, -1px 4px 0 #000, 1px -4px 0 #000, -1px -4px 0 #000,
+        4px 2px 0 #000, -4px 2px 0 #000, 4px -2px 0 #000, -4px -2px 0 #000,
+        2px 4px 0 #000, -2px 4px 0 #000, 2px -4px 0 #000, -2px -4px 0 #000,
+        4px 3px 0 #000, -4px 3px 0 #000, 4px -3px 0 #000, -4px -3px 0 #000,
+        3px 4px 0 #000, -3px 4px 0 #000, 3px -4px 0 #000, -3px -4px 0 #000,
+        4px 4px 0 #000, -4px 4px 0 #000, 4px -4px 0 #000, -4px -4px 0 #000;
 }
