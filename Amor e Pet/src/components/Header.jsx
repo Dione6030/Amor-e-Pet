@@ -8,6 +8,7 @@ export default function Header() {
     const [openNotifica, setOpenNotifica ] = useState(false)
     const [notificacoes, setNotificacoes] = useState([])
     const menuRef = useRef(null)
+    const notificaRef = useRef(null)
     const [usuario, setUsuario] = useState(null)
     
     useEffect(() => {
@@ -33,32 +34,31 @@ export default function Header() {
             if (openMenu && menuRef.current && !menuRef.current.contains(e.target) && e.target.id !== 'dropdownButton') {
                 setOpenMenu(false)
             }
-            if (openNotifica && menuRef.current && !menuRef.current.contains(e.target) && e.target.id !== 'notificationButton') {
+            if (openNotifica && notificaRef.current && !notificaRef.current.contains(e.target) && e.target.id !== 'notificationButton') {
                 setOpenNotifica(false)
             }
         }
         document.addEventListener('mousedown', handleClickFora)
+
         return () => {
             document.removeEventListener('mousedown', handleClickFora)
         }
-    }, [openMenu])
-    
+    }, [openMenu, openNotifica])
 
     function abrirMenu() {
         setOpenMenu(prev => !prev)
     }
 
-    function abrirNotificacoes() {
-        setOpenNotifica(prev => !prev)
+            return next
     }
 
     
     async function buscarNotificacoes() {
         try{
-            const resposta = await fetch(`http://localhost:3000/notifica/usuarioId=${id}`);
+            if (!usuario?.id) return
+            const resposta = await fetch(`http://localhost:3000/notifica?usuarioId=${usuario.id}`)
             if(!resposta.ok) throw new Error('Erro na busca por notificações')
-            const notificaDados = await resposta.json();
-
+            const notificaDados = await resposta.json()
             setNotificacoes(notificaDados)
         } catch (error) {
             console.error("Erro:", error.message);
@@ -95,12 +95,12 @@ export default function Header() {
                 }
 
                 {openNotifica && (
-                    <div ref={menuRef} children='dropdown' className='absolute w-80 bg-a-agua top-15 shadow-lg z-10 right-4'>
+                    <div ref={notificaRef} id='dropdownNotifications' className='absolute w-80 bg-a-agua top-15 shadow-lg z-10 right-4'>
                         <div className='flex flex-col items-center'>
                             <h2 className='text-xs md:text-2xl font-text text-outline-3 text-a-agua'>notificações:</h2>
                             <hr />
                             {notificacoes.length > 0 ? (
-                                notificacoes.map(notificacao => <CardNotificacao key={notificacao.id} notificacao={notificacao} /> )
+                                notificacoes.map(n => <CardNotificacao key={n.id} notificacao={n} /> )
                             ) : (
                                 <p>Nenhuma notificação nova</p>
                             )}
@@ -124,12 +124,16 @@ export default function Header() {
                         <Link to="/"><img src="./Frame 4.png" alt="Foto de Perfil" /></Link>
                     )}
 
-                    <button id='dropdownButton'
+                    <button
+                        id='notificationButton'
                     aria-haspopup="true" 
                     aria-expanded={openNotifica} 
-                    aria-controls='dropdown' 
+                        aria-controls='dropdownNotifications' 
                     className='block md:hidden cursor-pointer' 
-                    onClick={abrirNotificacao}><img src="./bxs_bell.png" alt="Foto de um sino" /></button>
+                        onClick={ abrirNotificacoes }
+                    >
+                        <img src="/bxs_bell.png" alt="Notificações" />
+                    </button>
                 </div>
             </nav>
         </header>
