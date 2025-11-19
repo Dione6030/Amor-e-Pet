@@ -97,7 +97,7 @@ export default function Header() {
                 )}
 
                 {openNotifica && (
-                    <div ref={notificaRef} id='dropdownNotifications' className='absolute w-80 bg-a-agua top-15 shadow-lg z-10 right-4'>
+                    <div ref={notificaRef} id='dropdownNotifications' className='absolute w-80 bg-a-agua top-15 md:top-20 shadow-lg z-10 right-4 md:right-20 p-4 rounded-md'>
                         <div className='flex flex-col items-center'>
                             <h2 className='text-xs md:text-2xl font-text text-outline-3 text-a-agua'>notificações:</h2>
                             <hr />
@@ -137,7 +137,7 @@ export default function Header() {
                         aria-haspopup="true" 
                         aria-expanded={openNotifica} 
                         aria-controls='dropdownNotifications' 
-                        className='block md:hidden cursor-pointer' 
+                        className='cursor-pointer' 
                         onClick={ abrirNotificacoes }
                     >
                         <img src="/bxs_bell.png" alt="Notificações" />
