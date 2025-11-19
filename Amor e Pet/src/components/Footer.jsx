@@ -2,7 +2,7 @@ export default function Footer() {
 
     return (
         <>
-            <footer className="flex flex-col md:flex-row md:items-center md:justify-evenly items-start justify-center w-full bg-a-agua p-4 gap-8 mt-8">
+            <footer className="flex flex-col md:flex-row md:items-center md:justify-evenly items-start justify-center w-full bg-a-agua p-4 gap-8 ">
                 <div className="flex flex-col items-start justify-between gap-2">
                     <p className="flex items-center gap-2 font-text text-xl text-a-agua text-outline-2">
                         <img src="./Vector.png" alt="Numero de Telefone" />
