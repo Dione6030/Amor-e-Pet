@@ -27,8 +27,6 @@ export default function Header() {
             if (e.key === 'usuarioLogado') load();
         }
         window.addEventListener('storage', onStorage);
-        return () => window.removeEventListener('storage', onStorage);
-
 
         function handleClickFora(e) {
             if (openMenu && menuRef.current && !menuRef.current.contains(e.target) && e.target.id !== 'dropdownButton') {
@@ -40,7 +38,9 @@ export default function Header() {
         }
         document.addEventListener('mousedown', handleClickFora)
 
+        // cleanup ÚNICO
         return () => {
+            window.removeEventListener('storage', onStorage)
             document.removeEventListener('mousedown', handleClickFora)
         }
     }, [openMenu, openNotifica])
@@ -49,13 +49,18 @@ export default function Header() {
         setOpenMenu(prev => !prev)
     }
 
+    async function abrirNotificacoes() {
+        setOpenNotifica(prev => {
+            const next = !prev
+            if (next) buscarNotificacoes()
             return next
+        })
     }
 
-    
     async function buscarNotificacoes() {
         try{
             if (!usuario?.id) return
+            // json-server: use query string
             const resposta = await fetch(`http://localhost:3000/notifica?usuarioId=${usuario.id}`)
             if(!resposta.ok) throw new Error('Erro na busca por notificações')
             const notificaDados = await resposta.json()
@@ -65,7 +70,6 @@ export default function Header() {
         }
     }
 
-    
     return (
         <>
         <header className="w-full p-0.5 md:p-2 flex items-center justify-center bg-a-agua">
@@ -81,18 +85,16 @@ export default function Header() {
                     <Link to="/" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3'>Login</Link>
                 </ul>
 
-                {openMenu && 
-                    (
-                        <div ref={menuRef} children='dropdown' id='dropdown' className='md:hidden absolute w-full top-13 bg-a-agua shadow-lg z-10'>
-                            <ul className='flex flex-col items-start p-4 gap-4'>
-                                <Link to="/" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-2xl text-a-agua text-outline-3 w-full text-center'>Home</Link>
-                                <Link to="/" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-2xl text-a-agua text-outline-3 w-full text-center'>Agendamentos</Link>
-                                <Link to="/" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-2xl text-a-agua text-outline-3 w-full text-center'>Meu Pet</Link>
-                                <Link to="/" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-2xl text-a-agua text-outline-3 w-full text-center'>Login</Link>
-                            </ul>
-                        </div>
-                    )   
-                }
+                {openMenu && (
+                    <div ref={menuRef} id='dropdownMenu' className='md:hidden absolute w-full top-13 bg-a-agua shadow-lg z-10'>
+                        <ul className='flex flex-col items-start p-4 gap-4'>
+                            <Link to="/" onClick={() => setOpenMenu(false)} className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-2xl text-a-agua text-outline-3 w-full text-center'>Home</Link>
+                            <Link to="/" onClick={() => setOpenMenu(false)} className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-2xl text-a-agua text-outline-3 w-full text-center'>Agendamentos</Link>
+                            <Link to="/" onClick={() => setOpenMenu(false)} className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-2xl text-a-agua text-outline-3 w-full text-center'>Meu Pet</Link>
+                            <Link to="/" onClick={() => setOpenMenu(false)} className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-2xl text-a-agua text-outline-3 w-full text-center'>Login</Link>
+                        </ul>
+                    </div>
+                )}
 
                 {openNotifica && (
                     <div ref={notificaRef} id='dropdownNotifications' className='absolute w-80 bg-a-agua top-15 shadow-lg z-10 right-4'>
@@ -109,27 +111,33 @@ export default function Header() {
                 )}
                 
                 <div className='flex items-center justify-center gap-4'>
-                    <button id='dropdownButton'
-                    aria-haspopup="true" 
-                    aria-expanded={openMenu} 
-                    aria-controls='dropdown' 
-                    className='block md:hidden cursor-pointer' 
-                    onClick={abrirMenu}><img src="./Menu Cel.png" alt="Menu" /></button>
+                    <button
+                        id='dropdownButton'
+                        aria-haspopup="true" 
+                        aria-expanded={openMenu} 
+                        aria-controls='dropdownMenu' 
+                        className='block md:hidden cursor-pointer' 
+                        onClick={abrirMenu}
+                    >
+                        <img src="/Menu Cel.png" alt="Menu" />
+                    </button>
                     
                     {usuario ? (
-                        <Link to="/"><img src="./Frame 4.png" alt="Foto de Perfil" />
-                            <img src={usuario.imagem || '/Imagens de perfil1.png'} alt="Perfil" className='w-20 h-w-20 rounded-full object-cover border-2 border-white' />
+                        <Link to="/">
+                            <img src="/Frame 4.png" alt=" Moldura de perfil" />
+                            {/* usa usuario.img do db.json; cai para /usuario.png no public */}
+                            <img src={usuario.img ? `/${usuario.img}` : '/usuario.png'} alt="Perfil" className='w-20 h-20 rounded-full object-cover border-2 border-white' />
                         </Link>
                     ) : (
-                        <Link to="/"><img src="./Frame 4.png" alt="Foto de Perfil" /></Link>
+                        <Link to="/"><img src="/Frame 4.png" alt=" Moldura de perfil" /></Link>
                     )}
 
                     <button
                         id='notificationButton'
-                    aria-haspopup="true" 
-                    aria-expanded={openNotifica} 
+                        aria-haspopup="true" 
+                        aria-expanded={openNotifica} 
                         aria-controls='dropdownNotifications' 
-                    className='block md:hidden cursor-pointer' 
+                        className='block md:hidden cursor-pointer' 
                         onClick={ abrirNotificacoes }
                     >
                         <img src="/bxs_bell.png" alt="Notificações" />
