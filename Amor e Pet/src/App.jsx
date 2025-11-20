@@ -45,7 +45,7 @@ function App() {
               <img src="./Seta Esquerda.png" alt="seta esquerda" className='w-20 h-20' />
             </button>
 
-            <div className='flex flex-wrap justify-center gap-8 px-5 w-full md:max-w-4xl'>
+            <div className='flex flex-wrap justify-center gap-8 px-5 w-full md:max-w-4xl max-h-150 xl:max-h-170 overflow-auto rounded-lg'>
               {listarProdutos}
             </div>
 
