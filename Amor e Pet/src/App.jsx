@@ -36,14 +36,29 @@ function App() {
         <h2 className='text-3xl md:text-4xl font-text text-a-agua text-outline-3'>Os mais vendidos:</h2>
 
         <div className='bg-a-agua flex flex-col items-center px-4 py-10 rounded-lg mx-8 gap-8'>
-          <div className='flex items-center justify-center gap-8'>
-            <button className='w-30 fixed top-40 left-2 md:left-25 md:top-50 2xl:left-80 md:w-auto'><img src="./Seta Esquerda.png" alt="Seta esquerda" /></button>
+          {/* Área dos cards vira contêiner relativo para posicionar setas */}
+          <div className='relative w-full flex items-center justify-center'>
+            {/* Botão esquerda */}
+            <button
+              type='button'
+              aria-label='Anterior'
+              className='absolute left-2 md:-left-10 top-1/2 -translate-y-1/2 flex items-center justify-center'
+            >
+              <img src="./Seta Esquerda.png" alt="" className='w-20 h-20' />
+            </button>
 
-            <div className='flex flex-wrap justify-center gap-8 px-5 w-50 md:w-4xl'>
+            <div className='flex flex-wrap justify-center gap-8 px-5 w-full md:max-w-4xl'>
               {listarProdutos}
             </div>
 
-            <button className='w-30 fixed top-40 right-2 md:right-25 md:top-50 2xl:right-80 md:w-auto'><img src="./Seta Direita.png" alt="Seta direita" /></button>
+            {/* Botão direita */}
+            <button
+              type='button'
+              aria-label='Próximo'
+              className='absolute right-2 md:-right-10 top-1/2 -translate-y-1/2 flex items-center justify-center '
+            >
+              <img src="./Seta Direita.png" alt="" className='w-20 h-20' />
+            </button>
           </div>
           <Link to="/" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-2xl md:text-3xl text-a-agua text-outline-3' >Ver todos os produtos</Link>
         </div>
