@@ -36,13 +36,11 @@ function App() {
         <h2 className='text-3xl md:text-4xl font-text text-a-agua text-outline-3'>Os mais vendidos:</h2>
 
         <div className='bg-a-agua flex flex-col items-center px-4 py-10 rounded-lg mx-8 gap-8'>
-          {/* Área dos cards vira contêiner relativo para posicionar setas */}
           <div className='relative w-full flex items-center justify-center'>
-            {/* Botão esquerda */}
             <button
               type='button'
               aria-label='Anterior'
-              className='absolute left-2 md:-left-10 top-1/2 -translate-y-1/2 flex items-center justify-center'
+              className='absolute left-0 md:-left-10 top-1/2 -translate-y-1/2 flex items-center justify-center'
             >
               <img src="./Seta Esquerda.png" alt="" className='w-20 h-20' />
             </button>
@@ -51,11 +49,10 @@ function App() {
               {listarProdutos}
             </div>
 
-            {/* Botão direita */}
             <button
               type='button'
               aria-label='Próximo'
-              className='absolute right-2 md:-right-10 top-1/2 -translate-y-1/2 flex items-center justify-center '
+              className='absolute right-0 md:-right-10 top-1/2 -translate-y-1/2 flex items-center justify-center '
             >
               <img src="./Seta Direita.png" alt="" className='w-20 h-20' />
             </button>
