@@ -3,7 +3,7 @@
 function CardProduto({ produto, setProdutos }) {
 
     return (
-        <div className="flex flex-col items-center gap-4 rounded-sm bg-a-claro w-60 md:w-80 pb-4">
+        <div className="flex flex-col items-center gap-4 rounded-sm bg-a-claro w-60 md:w-65 pb-4">
             <img src={produto.img} alt="Imagem do produto" className="w-full md:h-80 rounded-t-sm" />
             <div className="flex flex-col items-start gap-2 px-4">
                 <h3 className="text-3xl font-text text-a-agua text-outline-2">{produto.nome}</h3>
