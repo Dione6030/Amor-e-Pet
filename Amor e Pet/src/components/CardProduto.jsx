@@ -2,11 +2,11 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
 function CardProduto({ produto }) {
-    async function adicionarNoCarrinho() {
+    function adicionarNoCarrinho() {
         try {
             const raw = localStorage.getItem("usuarioLogado");
-            const usuarioLogado = raw ? JSON.parse(raw) : null;
-            if (!usuarioLogado) {
+            const usuario = raw ? JSON.parse(raw) : null;
+            if (!usuario) {
                 Swal.fire({
                     title: <h2 className="text-a-agua font-text text-outline-3">Você precisa estar logado</h2>,
                     icon: "info",
@@ -16,11 +16,7 @@ function CardProduto({ produto }) {
                 return;
             }
 
-            const resUser = await fetch(`http://localhost:3000/usuarios/${usuarioLogado.id}`);
-            if (!resUser.ok) throw new Error("Falha ao carregar usuário");
-            const userData = await resUser.json();
-            const carrinhoAtual = Array.isArray(userData.idprodutosnocarrinho) ? userData.idprodutosnocarrinho : [];
-
+            const carrinhoAtual = Array.isArray(usuario.idprodutosnocarrinho) ? usuario.idprodutosnocarrinho : [];
             if (carrinhoAtual.includes(produto.id)) {
                 Swal.fire({
                     title: <h2 className="text-a-agua font-text text-outline-3">Produto já está no carrinho</h2>,
@@ -32,17 +28,8 @@ function CardProduto({ produto }) {
             }
 
             const atualizado = [...carrinhoAtual, produto.id];
-
-            const resPatch = await fetch(`http://localhost:3000/usuarios/${usuarioLogado.id}` , {
-                method: "PATCH",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ idprodutosnocarrinho: atualizado })
-            });
-            if (!resPatch.ok) throw new Error("Falha ao atualizar carrinho");
-
-            // Atualiza localStorage para refletir mudança imediata
-            const novoLocal = { ...usuarioLogado, idprodutosnocarrinho: atualizado };
-            localStorage.setItem("usuarioLogado", JSON.stringify(novoLocal));
+            const usuarioAtualizado = { ...usuario, idprodutosnocarrinho: atualizado };
+            localStorage.setItem("usuarioLogado", JSON.stringify(usuarioAtualizado));
 
             Swal.fire({
                 title: <h2 className="text-a-agua font-text text-outline-3">Adicionado!</h2>,
