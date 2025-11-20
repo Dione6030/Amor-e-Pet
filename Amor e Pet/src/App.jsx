@@ -57,7 +57,7 @@ function App() {
               <img src="./Seta Direita.png" alt="" className='w-20 h-20' />
             </button>
           </div>
-          <Link to="/" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-1xl md:text-3xl text-a-agua text-outline-3' >Ver todos os produtos</Link>
+          <Link to="/Loja" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-1xl md:text-3xl text-a-agua text-outline-3' >Ver todos os produtos</Link>
         </div>
 
       </main>
