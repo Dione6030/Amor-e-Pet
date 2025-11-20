@@ -124,7 +124,7 @@ export default function Header() {
                     
                     {usuario ? (
                         <Link to="/">
-                            <img src={usuario.img ? `/${usuario.img}` : '/usuario.png'} alt="Perfil" className='w-15 h-12 md:w-20 md:h-20 rounded-full object-cover border-2 border-white' />
+                            <img src={usuario.img ? `/${usuario.img}` : '/usuario.png'} alt="Perfil" className='w-14 h-11 md:w-20 md:h-20 rounded-full object-cover border-2 border-white' />
                         </Link>
                     ) : (
                         <Link to="/"><img src="/Frame 4.png" alt=" Moldura de perfil" /></Link>
