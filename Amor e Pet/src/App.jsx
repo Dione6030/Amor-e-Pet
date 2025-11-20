@@ -42,7 +42,7 @@ function App() {
               aria-label='Anterior'
               className='absolute left-0 md:-left-10 top-1/2 -translate-y-1/2 flex items-center justify-center'
             >
-              <img src="./Seta Esquerda.png" alt="" className='w-20 h-20' />
+              <img src="./Seta Esquerda.png" alt="seta esquerda" className='w-20 h-20' />
             </button>
 
             <div className='flex flex-wrap justify-center gap-8 px-5 w-full md:max-w-4xl'>
@@ -54,10 +54,10 @@ function App() {
               aria-label='Próximo'
               className='absolute right-0 md:-right-10 top-1/2 -translate-y-1/2 flex items-center justify-center '
             >
-              <img src="./Seta Direita.png" alt="" className='w-20 h-20' />
+              <img src="./Seta Direita.png" alt="seta direita" className='w-20 h-20' />
             </button>
           </div>
-          <Link to="/Loja" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-1xl md:text-3xl text-a-agua text-outline-3' >Ver todos os produtos</Link>
+          <Link to="/Loja" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-1xl md:text-3xl text-a-agua text-outline-3 drop-shadow-xl/50' >Ver todos os produtos</Link>
         </div>
 
       </main>

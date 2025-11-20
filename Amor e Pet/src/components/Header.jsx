@@ -79,14 +79,14 @@ export default function Header() {
                     <h1 className="w-40 md:w-auto text-xl md:text-3xl text-outline-4 text-a-agua font-logo tracking-tighter">Amor & Pet</h1>
                 </Link>
                 <ul className="items-center justify-center gap-4 hidden md:flex">
-                    <Link to="/" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3'>Home</Link>
-                    <Link to="/" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3'>Agendamentos</Link>
-                    <Link to="/" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3'>Meu Pet</Link>
+                    <Link to="/" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3 drop-shadow-xl/50'>Home</Link>
+                    <Link to="/" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3 drop-shadow-xl/50'>Agendamentos</Link>
+                    <Link to="/" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3 drop-shadow-xl/50'>Meu Pet</Link>
 
                     {usuario ? (
-                        <Link to="/" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3'>Logout</Link>
+                        <Link to="/" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3 drop-shadow-xl/50'>Logout</Link>
                     ) : (
-                        <Link to="/Login" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3'>Login</Link>
+                        <Link to="/Login" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3 drop-shadow-xl/50'>Login</Link>
                     )}
 
                 </ul>
@@ -94,14 +94,14 @@ export default function Header() {
                 {openMenu && (
                     <div ref={menuRef} id='dropdownMenu' className='md:hidden absolute w-full top-13 bg-a-agua shadow-lg z-10'>
                         <ul className='flex flex-col items-start p-4 gap-4'>
-                            <Link to="/" onClick={() => setOpenMenu(false)} className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-2xl text-a-agua text-outline-3 w-full text-center'>Home</Link>
-                            <Link to="/" onClick={() => setOpenMenu(false)} className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-2xl text-a-agua text-outline-3 w-full text-center'>Agendamentos</Link>
-                            <Link to="/" onClick={() => setOpenMenu(false)} className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-2xl text-a-agua text-outline-3 w-full text-center'>Meu Pet</Link>
+                            <Link to="/" onClick={() => setOpenMenu(false)} className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-2xl text-a-agua text-outline-3 drop-shadow-xl/50 w-full text-center'>Home</Link>
+                            <Link to="/" onClick={() => setOpenMenu(false)} className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-2xl text-a-agua text-outline-3 drop-shadow-xl/50 w-full text-center'>Agendamentos</Link>
+                            <Link to="/" onClick={() => setOpenMenu(false)} className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-2xl text-a-agua text-outline-3 drop-shadow-xl/50 w-full text-center'>Meu Pet</Link>
                             
                             {usuario ? (
-                                <Link to="/" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-2xl text-a-agua text-outline-3 w-full text-center'>Logout</Link>
+                                <Link to="/" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-2xl text-a-agua text-outline-3 drop-shadow-xl/50 w-full text-center'>Logout</Link>
                             ) : (
-                                <Link to="/Login" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-2xl text-a-agua text-outline-3 w-full text-center'>Login</Link>
+                                <Link to="/Login" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-2xl text-a-agua text-outline-3 drop-shadow-xl/50 w-full text-center'>Login</Link>
                             )}
                         </ul>
                     </div>
