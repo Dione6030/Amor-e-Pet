@@ -82,7 +82,13 @@ export default function Header() {
                     <Link to="/" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3'>Home</Link>
                     <Link to="/" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3'>Agendamentos</Link>
                     <Link to="/" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3'>Meu Pet</Link>
-                    <Link to="/" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3'>Login</Link>
+
+                    {usuario ? (
+                        <Link to="/" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3'>Logout</Link>
+                    ) : (
+                        <Link to="/Login" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3'>Login</Link>
+                    )}
+
                 </ul>
 
                 {openMenu && (
@@ -91,7 +97,12 @@ export default function Header() {
                             <Link to="/" onClick={() => setOpenMenu(false)} className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-2xl text-a-agua text-outline-3 w-full text-center'>Home</Link>
                             <Link to="/" onClick={() => setOpenMenu(false)} className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-2xl text-a-agua text-outline-3 w-full text-center'>Agendamentos</Link>
                             <Link to="/" onClick={() => setOpenMenu(false)} className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-2xl text-a-agua text-outline-3 w-full text-center'>Meu Pet</Link>
-                            <Link to="/" onClick={() => setOpenMenu(false)} className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-2xl text-a-agua text-outline-3 w-full text-center'>Login</Link>
+                            
+                            {usuario ? (
+                                <Link to="/" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-2xl text-a-agua text-outline-3 w-full text-center'>Logout</Link>
+                            ) : (
+                                <Link to="/Login" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-2xl text-a-agua text-outline-3 w-full text-center'>Login</Link>
+                            )}
                         </ul>
                     </div>
                 )}
@@ -127,7 +138,7 @@ export default function Header() {
                             <img src={usuario.img ? `/${usuario.img}` : '/usuario.png'} alt="Perfil" className='w-14 h-11 md:w-20 md:h-20 rounded-full object-cover border-2 border-white' />
                         </Link>
                     ) : (
-                        <Link to="/"><img src="/Frame 4.png" alt=" Moldura de perfil" /></Link>
+                        <Link to="/Login"><img src="/Frame 4.png" alt=" Moldura de perfil" /></Link>
                     )}
 
                     <button
