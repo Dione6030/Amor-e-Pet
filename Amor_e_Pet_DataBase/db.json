@@ -1,88 +1,98 @@
 {
-    "produtos": [
-        {
-            "id": 1,
-            "nome": "Pé de Galinha",
-            "preco": 29.80,
-            "categorias": "Frango, Mordedores",
-            "img": "pedegalinha.png"
-        }
-    ],
-    "usuarios": [
-        {
-            "id": 1,
-            "nome": "adimin",
-            "img": "admin.png",
-            "email": "admin@example.com",
-            "senha": "admin123",
-            "endereco": "Rua Principal, 123, Cidade, Estado",
-            "telefone": "(11) 91234-5678",
-            "cpf": "123.456.789-00",
-            "cep": "12345-678",
-            "isAdmin": true
-        },
-        {
-            "id": 2,
-            "nome": "usuario",
-            "img": "usuario.png",
-            "email": "usuario@example.com",
-            "senha": "usuario123",
-            "endereco": "Avenida Secundária, 456, Cidade, Estado",
-            "telefone": "(11) 98765-4321",
-            "cpf": "987.654.321-00",
-            "cep": "87654-321",
-            "isAdmin": false
-        }
-    ],
-    "pets": [
-        {
-            "id": 1,
-            "usuarioId": 1,
-            "nome": "Pedrin",
-            "tipo": "Cachorro",
-            "raca": "Vira-lata",
-            "idade": 3,
-            "peso": 15.5,
-            "img": "pedrin.png"
-        }
-    ],
-    "profissionais": [
-        {
-            "id": 1,
-            "img": "jhon_doe.png",
-            "nome": "Jhon doe",
-            "crmv": "12345-SP",
-            "especialidade": "Banho e Tosa",
-            "turno": "Manhã",
-            "telefone": "(11) 92345-6789",
-            "email": "jhon.doe@example.com"
-        }
-    ],
-    "agendamentos": [
-        {
-            "id": 1,
-            "usuarioId": 1,
-            "petId": 1,
-            "profissionalId": 1,
-            "nomeProfissional": "Jhon doe",
-            "nomePet": "Pedrin",
-            "data": "2024-07-15",
-            "hora": "14:00",
-            "servico": "Banho e Tosa",
-            "obs": "Cuidado que ele tem alergia a certos shampoos."
-        }
-    ],
-    "notifica": [
-        {
-            "id": 1,
-            "usuarioId": 1,
-            "profissionalId": 1,
-            "proficionalNome": "Jhon doe",
-            "proficionalImg": "jhon_doe.png",
-            "data": "2024-07-15",
-            "hora": "14:00",
-            "mensagem": "Lembrete: Agendamento confirmado.",
-            "vista": false
-        }
-    ]
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Pé de Galinha",
+      "preco": 29.8,
+      "categorias": "Frango, Mordedores",
+      "img": "pedegalinha.png"
+    }
+  ],
+  "usuarios": [
+    {
+      "id": 1,
+      "nome": "Administrador",
+      "img": "admin.png",
+      "email": "admin@example.com",
+      "senha": "admin123",
+      "endereco": "Rua Principal, 123, Cidade, Estado",
+      "telefone": "(11) 91234-5678",
+      "cpf": "123.456.789-00",
+      "cep": "12345-678",
+      "papel": "veterinario"
+    },
+    {
+      "id": 2,
+      "nome": "Cliente Fiel",
+      "img": "usuario.png",
+      "email": "cliente@example.com",
+      "senha": "cliente123",
+      "endereco": "Avenida Secundária, 456, Cidade, Estado",
+      "telefone": "(11) 98765-4321",
+      "cpf": "987.654.321-00",
+      "cep": "87654-321",
+      "papel": "cliente"
+    },
+    {
+      "nome": "gabriel Ferreira",
+      "cpf": "04308082087",
+      "endereco": "rua sla 25 fraga",
+      "email": "Gabriel@gmail.com",
+      "senha": "leo123456",
+      "cep": "96030025",
+      "papel": "cliente",
+      "id": 3
+    }
+  ],
+  "pets": [
+    {
+      "id": 1,
+      "usuarioId": 1,
+      "nome": "Pedrin",
+      "tipo": "Cachorro",
+      "raca": "Vira-lata",
+      "idade": 3,
+      "peso": 15.5,
+      "img": "pedrin.png"
+    }
+  ],
+  "profissionais": [
+    {
+      "id": 1,
+      "img": "jhon_doe.png",
+      "nome": "Jhon doe",
+      "crmv": "12345-SP",
+      "especialidade": "Banho e Tosa",
+      "turno": "Manhã",
+      "telefone": "(11) 92345-6789",
+      "email": "jhon.doe@example.com"
+    }
+  ],
+  "agendamentos": [
+    {
+      "id": 1,
+      "usuarioId": 1,
+      "petId": 1,
+      "profissionalId": 1,
+      "nomeProfissional": "Jhon doe",
+      "nomePet": "Pedrin",
+      "data": "2024-07-15",
+      "hora": "14:00",
+      "servico": "Banho e Tosa",
+      "obs": "Cuidado que ele tem alergia a certos shampoos."
+    }
+  ],
+  "notifica": [
+    {
+      "id": 1,
+      "usuarioId": 1,
+      "profissionalId": 1,
+      "proficionalNome": "Jhon doe",
+      "proficionalImg": "jhon_doe.png",
+      "data": "2024-07-15",
+      "hora": "14:00",
+      "mensagem": "Lembrete: Agendamento confirmado.",
+      "vista": false
+    }
+  ]
 }
