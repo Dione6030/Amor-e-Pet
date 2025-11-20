@@ -18,19 +18,29 @@ function Loja() {
             const resposta = await fetch("http://localhost:3000/produtos")
             if (!resposta.ok) throw new Error("Erro ao consultar os produtos")
             const dados = await resposta.json()
-            const dados2 = dados.filter(produto => (
-                produto.nome.toUpperCase().includes(data.pesquisa.toUpperCase()) ||
-                produto.categoria.toUpperCase().includes(data.pesquisa.toUpperCase())
-            ))
-            if (dados2.length == 0) {
+
+            const termo = (data.pesquisa || '').trim().toUpperCase()
+            let filtrados = dados.filter(produto => {
+                if (!termo) return true
+                return produto.nome.toUpperCase().includes(termo) ||
+                       (produto.categorias || '').toUpperCase().includes(termo)
+            })
+
+            // Ordenação por preço
+            if (data.ordemPreco === 'asc') {
+                filtrados.sort((a,b) => a.preco - b.preco)
+            } else if (data.ordemPreco === 'desc') {
+                filtrados.sort((a,b) => b.preco - a.preco)
+            }
+
+            if (filtrados.length === 0) {
                 Swal.fire({
                     icon: "error",
                     title: "Oops...",
                     text: "Não há produtos com a palavra-chave no nome ou categoria",
                 });
-            } else {
-                setProdutos(dados2)
             }
+            setProdutos(filtrados)
         } catch (erro) {
             console.log("Erro: ", erro.message)
         }
@@ -49,7 +59,7 @@ function Loja() {
         }
         reset()
         buscarProdutos()
-    }, [])
+    }, [reset])
 
     const listarProdutos = produtos.map(produto => (
         <CardProduto key={produto.id} produto={produto} setProdutos={setProdutos} />
@@ -57,33 +67,33 @@ function Loja() {
 
     function pesquisandoProduto() {
         MySwal.fire({
-            title: <h2 className="bg-a-claro text-3xl md:text-4xl font-text text-a-agua text-outline-3">Pesquisar Produto</h2>,
+            title: <h2 className="bg-a-claro text-3xl md:text-4xl font-text text-a-agua text-outline-3 h-12 items-center flex justify-center rounded-2xl border">Pesquisar Produto</h2>,
             html: (
-                <form onSubmit={handleSubmit(pesquisarProdutos)} onReset={reset()} className="bg-a-claro flex flex-col justify-evenly">
-                    <p className="flex flex-col w-full">
-                        <label htmlFor="Pesquisa" className="font-text text-a-agua text-outline-2 text-xl">Nome ou categoria do produto</label>
-                        <input type="text" name="Pesquisa" id="Pesquisa" 
+                <form onSubmit={handleSubmit(pesquisarProdutos)} onReset={reset} className="bg-a-claro flex flex-col justify-evenly gap-8 p-4 rounded-2xl border">
+                    <p className="flex flex-col w-full gap-4">
+                        <label htmlFor="pesquisa" className="font-text text-a-agua text-outline-2 text-xl">Nome ou categoria do produto</label>
+                        <input type="text" id="pesquisa" 
                         className="bg-a-agua rounded-2xl border" 
-                        {...register("Pesquisa")} />
+                        {...register("pesquisa")} />
                     </p>
                     <p className="flex flex-col w-full">
-                        <label htmlFor="preco" className="font-text text-a-agua text-outline-2 text-xl">Ordem de Preço</label>
+                        <span className="font-text text-a-agua text-outline-2 text-xl">Ordem de Preço</span>
                         <div className="flex gap-4 justify-evenly items-end">
-                            <p>
-                                <input type="radio" name="preco_baixo" id="preco_baixo"
-                                {...register("preco_baixo")} />
-                                <label htmlFor="preco_baixo" className="font-text text-a-agua text-outline-2 text-lg">Menor Preço</label>
-                            </p>
-                            <p>
-                                <input type="radio" name="preco_alto" id="preco_alto"
-                                {...register("preco_alto")} />
-                                <label htmlFor="preco_alto" className="font-text text-a-agua text-outline-2 text-lg">Maior Preço</label>
-                            </p>
+                            <label className="flex items-center gap-2">
+                                <input type="radio" value="asc" {...register("ordemPreco")} />
+                                <span className="font-text text-a-agua text-outline-2 text-lg">Menor Preço</span>
+                            </label>
+                            <label className="flex items-center gap-2">
+                                <input type="radio" value="desc" {...register("ordemPreco")} />
+                                <span className="font-text text-a-agua text-outline-2 text-lg">Maior Preço</span>
+                            </label>
                         </div>
                     </p>
 
-                    <button type="submit" className="border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-1xl md:text-3xl text-a-agua text-outline-3">Pesquisar</button>
-                    <button type="reset" className="border border-white rounded-lg bg-red-600 px-3 py-2 font-text text-1xl md:text-3xl text-a-agua text-outline-3">Voltar</button>
+                    <div className="flex gap-8 items-center justify-evenly">
+                        <button type="submit" className="border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-1xl md:text-3xl text-a-agua text-outline-3">Pesquisar</button>
+                        <button type="reset" className="border border-white rounded-lg bg-red-600 px-3 py-2 font-text text-1xl md:text-3xl text-a-agua text-outline-3">Voltar</button>
+                    </div>
                 </form>
             )
         })
