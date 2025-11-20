@@ -124,8 +124,6 @@ export default function Header() {
                     
                     {usuario ? (
                         <Link to="/">
-                            <img src="/Frame 4.png" alt=" Moldura de perfil" />
-                            {/* usa usuario.img do db.json; cai para /usuario.png no public */}
                             <img src={usuario.img ? `/${usuario.img}` : '/usuario.png'} alt="Perfil" className='w-20 h-20 rounded-full object-cover border-2 border-white' />
                         </Link>
                     ) : (
