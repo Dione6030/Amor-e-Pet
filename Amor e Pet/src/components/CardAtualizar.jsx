@@ -67,9 +67,10 @@ export default function CardAtualizar({ produto }) {
 
                     <p className="flex flex-col w-full gap-4">
                         <label htmlFor="preco" className="font-text text-a-agua text-outline-2 text-xl">Preço do produto</label>
-                        <input type="number" id="preco" 
+                        <input type="number" id="preco"
+                        step="0.01" min="0" 
                         className="bg-a-agua rounded-2xl border p-2 text-white" 
-                        placeholder= {produto.preco}
+                        placeholder={produto.preco}
                         {...register("preco")} />
                     </p>
 
@@ -92,12 +93,6 @@ export default function CardAtualizar({ produto }) {
     }
 
     async function removerProduto() {
-        MySwal.fire({
-            title: 'Tem certeza que deseja remover este produto?',
-            text: "Esta ação não poderá ser desfeita!",
-            icon: 'warning',
-            showCancelButton: true,
-        })
         try {
             const resposta = await fetch(`http://localhost:3000/produtos/${produto.id}`, {
                 method: "DELETE"
@@ -114,6 +109,27 @@ export default function CardAtualizar({ produto }) {
         }
     }
 
+    async function removendoProduto() {
+        MySwal.fire({
+            title: 'Tem certeza que deseja remover este produto?',
+            text: "Esta ação não poderá ser desfeita!",
+            icon: 'warning',
+            showCancelButton: true,
+        })
+        .then((result) => {
+            if (result.isConfirmed) {
+                removerProduto();
+            } else {
+                MySwal.fire({
+                    icon: "info",
+                    title: "Ação cancelada",
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+        })
+    }
+
     return (
         <div className="flex flex-col items-center gap-4 rounded-sm bg-a-claro w-60 md:w-65 pb-4 h-auto md:h-130">
             <img src={produto.img} alt="Imagem do produto" className="w-full md:h-80 rounded-t-sm" />
@@ -125,7 +141,7 @@ export default function CardAtualizar({ produto }) {
 
             <div className="flex gap-4 mt-2">
                 <button onClick={atualizandoProduto} className="border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-xs md:text-xl text-a-agua text-outline-3 hover:bg-a-escuro/90 active:scale-95 transition">Atualizar</button>
-                <button onClick={removerProduto} className="border border-white rounded-lg bg-red-600 px-3 py-2 font-text text-xs md:text-xl text-a-agua text-outline-3 hover:bg-red-600/90 active:scale-95 transition">Remover</button>
+                <button onClick={removendoProduto} className="border border-white rounded-lg bg-red-600 px-3 py-2 font-text text-xs md:text-xl text-a-agua text-outline-3 hover:bg-red-600/90 active:scale-95 transition">Remover</button>
             </div>
         </div>
     )
