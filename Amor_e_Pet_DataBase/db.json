@@ -11,7 +11,7 @@
   "usuarios": [
     {
       "id": 1,
-      "nome": "Administrador",
+      "nome": "adimin",
       "img": "admin.png",
       "email": "admin@example.com",
       "senha": "admin123",
@@ -19,29 +19,39 @@
       "telefone": "(11) 91234-5678",
       "cpf": "123.456.789-00",
       "cep": "12345-678",
-      "papel": "veterinario"
+      "isAdmin": true
     },
     {
       "id": 2,
-      "nome": "Cliente Fiel",
+      "nome": "Dione",
       "img": "usuario.png",
-      "email": "cliente@example.com",
-      "senha": "cliente123",
+      "email": "usuario@example.com",
+      "senha": "usuario123",
       "endereco": "Avenida Secundária, 456, Cidade, Estado",
       "telefone": "(11) 98765-4321",
       "cpf": "987.654.321-00",
       "cep": "87654-321",
-      "papel": "cliente"
+      "isAdmin": false
     },
     {
-      "nome": "gabriel Ferreira",
-      "cpf": "04308082087",
-      "endereco": "rua sla 25 fraga",
+      "nome": "Gabriel ",
+      "cpf": "123456789",
+      "endereco": "rua abc",
       "email": "Gabriel@gmail.com",
-      "senha": "leo123456",
-      "cep": "96030025",
+      "senha": "123",
+      "cep": "123456",
       "papel": "cliente",
       "id": 3
+    },
+    {
+      "nome": "Maria Silva",
+      "cpf": "04308040040",
+      "endereco": "rua floriano 85 tres vendas ",
+      "email": "MariaSilva@gmail.com",
+      "senha": "123456",
+      "cep": "96050080",
+      "papel": "cliente",
+      "id": 4
     }
   ],
   "pets": [
