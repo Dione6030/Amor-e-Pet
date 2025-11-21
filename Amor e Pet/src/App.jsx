@@ -2,7 +2,7 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import { Link } from 'react-router-dom'
 import './index.css'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import CardProduto from './components/CardProduto'
 
 function App() {
@@ -23,10 +23,19 @@ function App() {
     buscarProdutos()
   }, [])
 
-  //somente 6 itens para destacar
   const listarProdutos = produtos.slice(0,6).map(produto => (
     <CardProduto key={produto.id} produto={produto} setProdutos={setProdutos} />
   ))
+  const carouselRef = useRef(null)
+
+  function scrollLeft() {
+    if (!carouselRef.current) return
+    carouselRef.current.scrollBy({ left: -carouselRef.current.clientWidth * 0.8, behavior: 'smooth' })
+  }
+  function scrollRight() {
+    if (!carouselRef.current) return
+    carouselRef.current.scrollBy({ left: carouselRef.current.clientWidth * 0.8, behavior: 'smooth' })
+  }
 
   return (
     <>
@@ -40,21 +49,26 @@ function App() {
             <button
               type='button'
               aria-label='Anterior'
-              className='absolute left-0 md:-left-10 top-1/2 -translate-y-1/2 flex items-center justify-center'
+              onClick={scrollLeft}
+              className='absolute -left-14 top-1/2 -translate-y-1/2'
             >
-              <img src="./Seta Esquerda.png" alt="seta esquerda" className='w-20 h-20' />
+              <img src="./Seta Esquerda.png" alt="seta esquerda" className='w-20 h-20 pointer-events-none' />
             </button>
 
-            <div className='flex flex-wrap justify-center gap-8 px-5 w-full md:max-w-4xl max-h-150 xl:max-h-170 overflow-auto rounded-lg'>
+            <div
+              ref={carouselRef}
+              className='flex gap-8 px-5 w-full overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-smooth'
+            >
               {listarProdutos}
             </div>
 
             <button
               type='button'
               aria-label='Próximo'
-              className='absolute right-0 md:-right-10 top-1/2 -translate-y-1/2 flex items-center justify-center '
+              onClick={scrollRight}
+              className='absolute -right-14 top-1/2 -translate-y-1/2'
             >
-              <img src="./Seta Direita.png" alt="seta direita" className='w-20 h-20' />
+              <img src="./Seta Direita.png" alt="seta direita" className='w-20 h-20 pointer-events-none' />
             </button>
           </div>
           <Link to="/Loja" className='border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-1xl md:text-3xl text-a-agua text-outline-3 drop-shadow-xl/50' >Ver todos os produtos</Link>
