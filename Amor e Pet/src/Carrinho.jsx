@@ -22,6 +22,21 @@ function Carrinho() {
         <CardCarrinho key={produto.id} produto={produto} />
     ))
 
+    function RemoverTudo() {
+        try {
+            const raw = localStorage.getItem('usuarioLogado');
+            if (!raw) return;
+            const usuario = JSON.parse(raw);
+            const carrinhoKey = `carrinho_${usuario.id}`;
+            localStorage.removeItem(carrinhoKey);
+            const usuarioAtualizado = { ...usuario, idprodutosnocarrinho: [] };
+            localStorage.setItem('usuarioLogado', JSON.stringify(usuarioAtualizado));
+            window.location.reload();
+        } catch (e) {
+            console.log('Erro ao remover todos os produtos do carrinho:', e.message);
+        }
+    }
+
     return (
         <>
         <Header />
@@ -36,7 +51,7 @@ function Carrinho() {
 
             <div className="flex flex-col gap-4 md:gap-8">
                 <button className="border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-2xl text-a-agua text-outline-3 hover:bg-a-escuro/90 active:scale-95 transition">Finalizar compra</button>
-                <button className="border border-white rounded-lg bg-red-600 px-3 py-2 font-text text-2xl text-a-agua text-outline-3 hover:bg-red-600/90 active:scale-95 transition">Cancelar compra</button>
+                <button onClick={RemoverTudo} className="border border-white rounded-lg bg-red-600 px-3 py-2 font-text text-2xl text-a-agua text-outline-3 hover:bg-red-600/90 active:scale-95 transition">Cancelar compra</button>
             </div>
         </main>
 
