@@ -3,7 +3,7 @@ import Swal from 'sweetalert2';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
-const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3001';
+const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3000';
 
 export default function PerfilUsuario() {
     const [usuario, setUsuario] = useState({

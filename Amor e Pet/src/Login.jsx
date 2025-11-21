@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3001';
+// json-server padrão roda na porta 3000 (produtos já usam 3000). Ajuste fallback.
+const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3000';
+const USUARIOS_ENDPOINT = `${API_URL}/usuarios`;
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -22,27 +24,28 @@ export default function Login() {
         }
 
         try {
-            const resposta = await fetch(`${API_URL}/login`, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email, senha })
-            });
+            // Consulta usuarios filtrando por email e senha via query params do json-server
+            const url = `${USUARIOS_ENDPOINT}?email=${encodeURIComponent(email)}&senha=${encodeURIComponent(senha)}`;
+            const resposta = await fetch(url);
+            if (!resposta.ok) throw new Error('Falha de comunicação com o servidor.');
+            const lista = await resposta.json();
 
-            if (!resposta.ok) {
-                const erroData = await resposta.json();
-                throw new Error(erroData.message || 'Credenciais inválidas.');
+            if (!Array.isArray(lista) || lista.length === 0) {
+                throw new Error('Credenciais inválidas.');
             }
 
-            const { usuario } = await resposta.json();
-            
-            // Salva o usuário no localStorage para manter a sessão
+            // Se houver mais de um, pega o primeiro (dados inconsistentes indicariam duplicidade)
+            const usuario = lista[0];
             localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
 
-            // Redireciona para a página inicial
             navigate('/');
-
         } catch (error) {
-            setErro(error.message);
+            // Network error (ex: servidor fora) cai aqui com message genérica do fetch
+            if (error.message === 'Failed to fetch') {
+                setErro('Não foi possível conectar ao servidor (verifique se o json-server está rodando na porta 3000).');
+            } else {
+                setErro(error.message);
+            }
         } finally {
             setCarregando(false);
         }
@@ -53,7 +56,7 @@ export default function Login() {
             <header className="flex items-center justify-center bg-a-agua h-24 shadow-md shadow-black/30">
                 <Link to="/" className="flex items-center gap-2">
                     <img src="/Logo.png" alt="Amor e Pet" className="w-12 h-12  md:w-16 md:h-16" />
-                    <h1 className="text-3xl text-outline-4 pr-4 text-a-agua font-logo tracking-tighter text-white drop-shadow-md">Amor & Pet</h1>
+                    <h1 className="text-3xl text-outline-4 pr-4 font-logo tracking-tighter text-white drop-shadow-md">Amor & Pet</h1>
                 </Link>
             </header>
             <main className="p-4 md:p-8 bg-a-claro min-h-[calc(100vh-6rem)] flex items-center justify-center">

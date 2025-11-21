@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3001';
+const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3000';
 
 const FORM_INICIAL = {
     nome: '',
@@ -93,7 +93,7 @@ export default function Cadastro() {
         <header className="flex items-center justify-center bg-a-agua h-24 shadow-md shadow-black/30">
             <Link to="/" className="flex items-center gap-2">
                 <img src="/Logo.png" alt="Amor e Pet" className="w-12 h-12 md:w-16 md:h-16" />
-                <h1 className="text-3xl text-outline-4 pr-4 text-a-agua font-logo tracking-tighter text-white drop-shadow-md md:pr-6">Amor & Pet</h1>
+                <h1 className="text-3xl text-outline-4 pr-4 font-logo tracking-tighter text-white drop-shadow-md md:pr-6">Amor & Pet</h1>
             </Link>
         </header>
         <main className="p-4 md:p-8 bg-a-claro min-h-[calc(100vh-6rem)] flex items-center justify-center">
