@@ -57,7 +57,7 @@ function App() {
 
             <div
               ref={carouselRef}
-              className='flex gap-8 px-5 w-full overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-smooth'
+              className='flex gap-8 px-5 w-80 md:w-4xl overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-smooth max-w-80 md:max-w-4xl'
             >
               {listarProdutos}
             </div>
