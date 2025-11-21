@@ -4,7 +4,7 @@ export default function CardCarrinho({ produto }) {
 
     return (
 
-        <div className="flex flex-row items-center gap-4 rounded-sm bg-a-claro h-35 md:h-40">
+        <div className="flex flex-row items-center gap-1 md:gap-8 rounded-sm bg-a-claro h-35 md:h-40">
             <img src={produto.img} alt="Imagem do produto" className="h-full rounded-t-sm" />
             <div className="flex flex-col items-start gap-2 px-4">
                 <h3 className="text-xl md:text-3xl font-text text-a-agua text-outline-2">{produto.nome}</h3>
