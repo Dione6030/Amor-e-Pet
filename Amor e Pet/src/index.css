@@ -84,6 +84,14 @@
         4px 4px 0 #000, -4px 4px 0 #000, 4px -4px 0 #000, -4px -4px 0 #000;
 }
 
+/* Esconde scrollbar para carrosséis horizontais */
+.no-scrollbar {
+    scrollbar-width: none; /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+}
+
 @keyframes fadeInDown {
     from {
         opacity: 0;
