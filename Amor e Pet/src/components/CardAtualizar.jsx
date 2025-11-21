@@ -67,9 +67,9 @@ export default function CardAtualizar({ produto }) {
 
                     <p className="flex flex-col w-full gap-4">
                         <label htmlFor="preco" className="font-text text-a-agua text-outline-2 text-xl">Preço do produto</label>
-                        <input type="text" id="preco" 
+                        <input type="number" id="preco" 
                         className="bg-a-agua rounded-2xl border p-2 text-white" 
-                        placeholder={produto.preco}
+                        placeholder= {produto.preco}
                         {...register("preco")} />
                     </p>
 

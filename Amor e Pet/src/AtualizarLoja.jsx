@@ -124,7 +124,8 @@ function AtualizarLoja() {
 
                     <p className="flex flex-col w-full gap-4">
                         <label htmlFor="preco" className="font-text text-a-agua text-outline-2 text-xl">Preço do produto</label>
-                        <input type="text" id="preco" 
+                        <input type="number" id="preco" 
+                        placeholder="R$: "
                         className="bg-a-agua rounded-2xl border p-2 text-white" 
                         {...register("preco")} />
                     </p>
