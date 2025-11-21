@@ -17,7 +17,11 @@ function CardProduto({ produto }) {
             }
 
             const carrinhoAtual = Array.isArray(usuario.idprodutosnocarrinho) ? usuario.idprodutosnocarrinho : [];
-            if (carrinhoAtual.includes(produto.id)) {
+            const carrinhoKey = `carrinho_${usuario.id}`;
+            const carrinhoObjsRaw = localStorage.getItem(carrinhoKey);
+            const carrinhoObjs = carrinhoObjsRaw ? JSON.parse(carrinhoObjsRaw) : [];
+
+            if (carrinhoAtual.includes(produto.id) || carrinhoObjs.some(p => p.id === produto.id)) {
                 Swal.fire({
                     title: <h2 className="text-a-agua font-text text-outline-3">Produto já está no carrinho</h2>,
                     icon: "info",
@@ -30,6 +34,15 @@ function CardProduto({ produto }) {
             const atualizado = [...carrinhoAtual, produto.id];
             const usuarioAtualizado = { ...usuario, idprodutosnocarrinho: atualizado };
             localStorage.setItem("usuarioLogado", JSON.stringify(usuarioAtualizado));
+
+            const novoCarrinhoObjs = [...carrinhoObjs, {
+                id: produto.id,
+                nome: produto.nome,
+                preco: produto.preco,
+                categorias: produto.categorias,
+                img: produto.img
+            }];
+            localStorage.setItem(carrinhoKey, JSON.stringify(novoCarrinhoObjs));
 
             Swal.fire({
                 title: <h2 className="text-a-agua font-text text-outline-3">Adicionado!</h2>,
