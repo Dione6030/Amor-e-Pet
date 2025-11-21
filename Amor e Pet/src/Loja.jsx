@@ -119,10 +119,10 @@ function Loja() {
 
             <div className="flex flex-col md:flex-row justify-around items-center gap-10 md:gap-20">
                 {checaAdmin() && (
-                    <Link to="/" className="border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3 drop-shadow-xl/50">Atualizar Loja</Link>
+                    <Link to="/atualizar-loja" className="border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3 drop-shadow-xl/50 w-50 text-center">Atualizar Loja</Link>
                 )}
-                <Link to="/Carrinho" className="border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3 drop-shadow-xl/50">Carrinho</Link>
-                <button onClick={pesquisandoProduto} className="border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3 drop-shadow-xl/50 cursor-pointer">Pesquisar produtos</button>
+                <Link to="/Carrinho" className="border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3 drop-shadow-xl/50 w-50 text-center">Carrinho</Link>
+                <button onClick={pesquisandoProduto} className="border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3 drop-shadow-xl/50 cursor-pointer w-50 text-center">Pesquisar produtos</button>
             </div>
             
             <div className='bg-a-agua flex flex-wrap justify-center gap-8 p-5 w-full md:max-w-4xl max-h-150 xl:max-h-160 xl:h-160 overflow-auto rounded-lg'>
