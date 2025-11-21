@@ -11,6 +11,7 @@ import Cadastro from './Cadastro.jsx'
 import Agendamentos from './Agendamentos.jsx'
 import NovoAgendamento from './NovoAgendamento.jsx'
 import PerfilUsuario from './PerfilUsuario.jsx';
+import AtualizarLoja from './AtualizarLoja.jsx';
 
 const router = createBrowserRouter([
   { path: "/", element: <App/> },
@@ -20,7 +21,8 @@ const router = createBrowserRouter([
   { path: "/Cadastro", element: <Cadastro/> },
   { path: "/Agendamentos", element: <Agendamentos /> },
   { path: "/novo-agendamento", element: <NovoAgendamento /> },
-  { path: "/perfil-usuario", element: <PerfilUsuario /> }
+  { path: "/perfil-usuario", element: <PerfilUsuario /> },
+  { path: "/atualizar-loja", element: <AtualizarLoja /> }
 ])
 
 createRoot(document.getElementById('root')).render(
