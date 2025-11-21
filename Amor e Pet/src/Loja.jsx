@@ -121,7 +121,7 @@ function Loja() {
                 {checaAdmin() && (
                     <Link to="/" className="border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3 drop-shadow-xl/50">Atualizar Loja</Link>
                 )}
-                <Link to="/" className="border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3 drop-shadow-xl/50">Carrinho</Link>
+                <Link to="/Carrinho" className="border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3 drop-shadow-xl/50">Carrinho</Link>
                 <button onClick={pesquisandoProduto} className="border border-white rounded-lg bg-a-escuro px-3 py-2 font-text text-3xl text-a-agua text-outline-3 drop-shadow-xl/50">Pesquisar produtos</button>
             </div>
             
