@@ -74,11 +74,11 @@ export default function CardAtualizar({ produto }) {
                     </p>
 
                     <p className="flex flex-col w-full gap-4">
-                        <label htmlFor="preco" className="font-text text-a-agua text-outline-2 text-xl">URL da Imagem</label>
-                        <input type="text" id="preco" 
+                        <label htmlFor="img" className="font-text text-a-agua text-outline-2 text-xl">URL da Imagem</label>
+                        <input type="text" id="img" 
                         className="bg-a-agua rounded-2xl border p-2 text-white" 
-                        placeholder={produto.preco}
-                        {...register("preco")} />
+                        placeholder={produto.img}
+                        {...register("img")} />
                     </p>
 
                     <div className="flex gap-8 items-center justify-evenly">
