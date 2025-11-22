@@ -215,14 +215,20 @@ export default function Header() {
                                     </div>
 
                                     <div className="p-2">
-                                        <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-colors text-left group">
-                                            <div className="bg-gray-100 p-2 rounded-full group-hover:bg-white transition-colors">
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                        
+                                    <Link 
+                                            to="/adicionarconta" 
+                                            onClick={() => setOpenPerfil(false)}
+                                            className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-colors text-left group"
+                                        >
+                                            <div className="bg-gray-100 p-2 rounded-full text-gray-500 group-hover:bg-blue-100 group-hover:text-blue-600 transition-colors duration-200">
+                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
                                                 </svg>
                                             </div>
-                                            <span className="font-text text-gray-700">Adicionar outra conta</span>
-                                        </button>
+                                            <span className="font-text text-gray-700 group-hover:text-blue-600 transition-colors duration-200">Adicionar outra conta</span>
+                                        </Link>
+                                        
                                         
                                         <button className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 rounded-lg transition-colors text-left group">
                                             <div className="bg-gray-100 p-2 rounded-full group-hover:bg-white transition-colors">

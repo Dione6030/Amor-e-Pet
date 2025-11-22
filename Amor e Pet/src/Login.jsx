@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const API_URL = import.meta.env.VITE_API_URL ?? 'http://localhost:3001';
 
@@ -8,7 +8,28 @@ export default function Login() {
     const [senha, setSenha] = useState("");
     const [erro, setErro] = useState("");
     const [carregando, setCarregando] = useState(false);
+    const [usuarioSelecionado, setUsuarioSelecionado] = useState(null); // Novo estado para usuário pré-selecionado
     const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        // Verifica se há um email passado na URL via query param (?email=...)
+        const params = new URLSearchParams(location.search);
+        const emailUrl = params.get('email');
+        
+        if (emailUrl) {
+            setEmail(emailUrl);
+            // Busca informações visuais da conta salva (se houver)
+            const contasSalvas = JSON.parse(localStorage.getItem('contasRecentes')) || [];
+            const conta = contasSalvas.find(c => c.email === emailUrl);
+            if (conta) {
+                setUsuarioSelecionado(conta);
+            }
+        } else {
+            setUsuarioSelecionado(null);
+            setEmail("");
+        }
+    }, [location]);
 
     async function handleSubmit(evento) {
         evento.preventDefault();
@@ -38,6 +59,17 @@ export default function Login() {
             // Salva o usuário no localStorage para manter a sessão
             localStorage.setItem('usuarioLogado', JSON.stringify(usuario));
 
+            // ATUALIZAÇÃO: Salva na lista de contas recentes para a tela AdicionarConta
+            const contasSalvas = JSON.parse(localStorage.getItem('contasRecentes')) || [];
+            // Remove a conta se já existir para evitar duplicatas e atualizar os dados
+            const novasContas = contasSalvas.filter(c => c.email !== usuario.email);
+            novasContas.push({
+                nome: usuario.nome,
+                email: usuario.email,
+                img: usuario.img
+            });
+            localStorage.setItem('contasRecentes', JSON.stringify(novasContas));
+
             // Redireciona para a página inicial
             navigate('/');
 
@@ -60,22 +92,48 @@ export default function Login() {
                 <div className="w-full max-w-md bg-white p-8 rounded-lg shadow-lg">
                     <header className="text-center mb-8">
                         <h2 className="text-4xl font-bold font-title text-a-escuro">Login</h2>
-                        <p className="text-lg font-text text-gray-600 mt-2">Bem-vindo de volta!</p>
+                        <p className="text-lg font-text text-gray-600 mt-2">
+                            {usuarioSelecionado ? `Olá, ${usuarioSelecionado.nome}!` : 'Bem-vindo de volta!'}
+                        </p>
                     </header>
 
                     <form className="space-y-6" onSubmit={handleSubmit}>
-                        <div>
-                            <label className="block font-text text-lg text-a-escuro mb-2">
-                                Email
-                            </label>
-                            <input
-                                type="email"
-                                placeholder="seu@email.com"
-                                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-a-escuro outline-none transition-all"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
-                            />
-                        </div>
+                        
+                        {usuarioSelecionado ? (
+                            <div className="flex flex-col items-center justify-center p-4 bg-gray-50 rounded-xl border border-gray-100">
+                                <img 
+                                    src={usuarioSelecionado.img ? `/img/${usuarioSelecionado.img}` : "https://via.placeholder.com/80"} 
+                                    alt={usuarioSelecionado.nome}
+                                    className="w-24 h-24 rounded-full object-cover border-4 border-a-agua mb-3 shadow-sm"
+                                    onError={(e) => { e.target.src = "https://via.placeholder.com/80" }}
+                                />
+                                <p className="font-text text-gray-500 text-sm mb-1">{usuarioSelecionado.email}</p>
+                                <button 
+                                    type="button" 
+                                    onClick={() => {
+                                        setUsuarioSelecionado(null);
+                                        setEmail("");
+                                        navigate('/login');
+                                    }}
+                                    className="text-sm text-a-escuro font-bold hover:underline"
+                                >
+                                    Não é você? Trocar conta
+                                </button>
+                            </div>
+                        ) : (
+                            <div>
+                                <label className="block font-text text-lg text-a-escuro mb-2">
+                                    Email
+                                </label>
+                                <input
+                                    type="email"
+                                    placeholder="seu@email.com"
+                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-a-escuro outline-none transition-all"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                />
+                            </div>
+                        )}
 
                         <div>
                             <label className="block font-text text-lg text-a-escuro mb-2">
@@ -87,6 +145,7 @@ export default function Login() {
                                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-a-escuro outline-none transition-all"
                                 value={senha}
                                 onChange={(e) => setSenha(e.target.value)}
+                                autoFocus={!!usuarioSelecionado}
                             />
                         </div>
                         
